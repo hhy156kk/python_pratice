@@ -8,6 +8,17 @@ var aqiSourceData = {
   }
 };
 */
+var EventUtil = {
+  addHandler:function(element,type,handler){
+    if(element.addEventListener){
+      element.addEventListener(type,handler,false);
+    }else if(element.attachEvent){
+      element.attachEvent("on"+type,handler);
+    }else{
+      element["on"+type] = handler;
+    }
+  }
+}
 
 // 以下两个函数用于随机模拟生成测试数据
 function getDateStr(dat) {
@@ -175,9 +186,12 @@ function citySelectChange(target) {
 function initGraTimeForm() {
 
   var table = document.getElementById("form-gra-time");
-  table.addEventListener("change",function(event){
+  EventUtil.addHandler(table,"change",function(event){
     graTimeChange(event.target);
-  },false);
+  });
+  //table.addEventListener("change",function(event){
+  //  graTimeChange(event.target);
+  //},false);
 
 }
 
