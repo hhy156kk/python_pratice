@@ -13,7 +13,7 @@ var EventUtil = {
     if(element.addEventListener){
       element.addEventListener(type,handler,false);
     }else if(element.attachEvent){
-      element.attachEvent("on"+type,handler);
+      element.attachEvent("on" + type,handler);
     }else{
       element["on"+type] = handler;
     }
@@ -58,7 +58,7 @@ var chartData = {};
 
 // 记录当前页面的表单选项
 var pageState = {
-  nowSelectCity: -1,
+  nowSelectCity: "北京",
   nowGraTime: "day"
 }
 
@@ -211,9 +211,9 @@ function initCitySelector() {
     citySelect.appendChild(option);
   }
   // 给select设置事件，当选项发生变化时调用函数citySelectChange
-  citySelect.addEventListener("change",function(event){
+  EventUtil.addHandler(citySelect,"change",function(event){
     citySelectChange(event.target);
-  },false);
+  });
 
 }
 
@@ -229,9 +229,10 @@ function initAqiChartData() {
  * 初始化函数
  */
 function init() {
-  initGraTimeForm()
+  initGraTimeForm();
   initCitySelector();
   initAqiChartData();
+  renderChart();
 }
 
 init();
