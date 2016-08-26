@@ -28,4 +28,19 @@
 		}
 
 	},false);
+
+	var buttonLeftOut = document.getElementById("left-out");
+	buttonLeftOut.addEventListener("click",function(){
+		var container = document.getElementById("container");
+		var deleteDiv = container.getElementsByTagName("div")[0];
+		container.removeChild(deleteDiv);
+	},false);
+
+	var buttonRightOut = document.getElementById("right-out");
+	buttonRightOut.addEventListener("click",function(){
+		var container = document.getElementById("container");
+		var length = container.getElementsByTagName("div").length;
+		var deleteDiv = container.getElementsByTagName("div")[length-1];
+		container.removeChild(deleteDiv);
+	},false);
 })();
